@@ -5,9 +5,9 @@ from supabase import create_client, Client
 import logging
 
 # --- НАСТРОЙКИ (Вставь свои данные) ---
-BOT_TOKEN = "ТВОЙ_ТОКЕН_ОТ_BOTFATHER"
+BOT_TOKEN = "9202543767:AAFErNGlNj5v8aTYQqdP9u8HUBxcjSmW-Tc"
 SUPABASE_URL = "https://iqvujenjffevijvtdvd.supabase.co"
-SUPABASE_KEY = "ТВОЙ_SUPABASE_ANON_KEY"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlxdnVqZW5qZmZmZXZqanZ0dmR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3MzA0OTUsImV4cCI6MjEwNzMwNjQ5NX0.KJNVyRzdB0txk1cwoub_yxNHBVkZNibU9GQc1a5Jnno"
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
