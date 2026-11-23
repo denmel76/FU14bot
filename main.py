@@ -4,10 +4,10 @@ from aiogram.filters import Command
 from supabase import create_client, Client
 import logging
 
-# --- НАСТРОЙКИ (Вставь свои данные) ---
-BOT_TOKEN = "9202543767:AAFErNGlNj5v8aTYQqdP9u8HUBxcjSmW-Tc"
-SUPABASE_URL = "https://iqvujenjfffevjjvtvdv.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlxdnVqZW5qZmZmZXZqanZ0dmR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3MzA0OTUsImV4cCI6MjEwNzMwNjQ5NX0.KJNVyRzdB0txk1cwoub_yxNHBVkZNibU9GQc1a5Jnno"
+# --- НАСТРОЙКИ ---
+BOT_TOKEN = "ТВОЙ_ТОКЕН_ОТ_BOTFATHER"
+SUPABASE_URL = "https://iqvujenjfffevjjvtvdv.supabase.co"  # Без /rest/v1/ в конце!
+SUPABASE_KEY = "ТВОЙ_SUPABASE_ANON_PUBLIC_KEY"
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
@@ -17,8 +17,9 @@ logging.basicConfig(level=logging.INFO)
 
 async def get_bot_reply(user_message: str):
     try:
+        # ИСПРАВЛЕНО: запрашиваем оба поля, чтобы проверка сработала
         response = supabase.table('bot_rules') \
-            .select('reply_text') \
+            .select('trigger_word, reply_text') \
             .eq('is_active', True) \
             .execute()
         
@@ -43,7 +44,7 @@ async def log_action(user_id, username, msg_text, bot_reply):
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
-    await message.answer("Бот запущен! Напиши 'привет'.")
+    await message.answer("Бот запущен! Напиши 'привет', чтобы проверить работу.")
 
 @dp.message()
 async def handle_message(message: types.Message):
